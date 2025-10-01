@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Feliz Cumpleaños 🎉</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to top, #fff0f6, #ffe3ee);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      margin-top: 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    #sorpresa {
+      display: none;
+      margin-top: 40px;
+    }
+
+    h1 {
+      color: #e91e63;
+      font-size: 2.5em;
+      animation: aparecer 2s ease-in-out;
+    }
+
+    .ramo {
+      width: 250px;
+      margin-top: 20px;
+      animation: aparecer 3s ease-in-out;
+    }
+
+    button {
+      background: #ff4081;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 3;
+      position: relative;
+    }
+
+    button:hover {
+      background: #e91e63;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* 🎈 Globos flotando */
+    .globo {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      background: red;
+      animation: flotar 10s infinite ease-in;
+      opacity: 0.8;
+    }
+
+    .globo::after {
+      content: "";
+      position: absolute;
+      width: 2px;
+      height: 60px;
+      background: #333;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    @keyframes flotar {
+      from { transform: translateY(0) rotate(0); }
+      to { transform: translateY(-120vh) rotate(360deg); }
+    }
+
+    /* 🎊 Confeti */
+    .confeti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      animation: caer 5s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes caer {
+      0% { transform: translateY(-10px) rotate(0); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button onclick="mostrarSorpresa()">🎁 Presiona aquí 🎁</button>
+    <div id="sorpresa">
+      <h1>🎉 ¡Feliz Cumpleaños! 🎂</h1>
+      <!-- Ramo de flores 🌹🌸 -->
+      <img src="https://i.ibb.co/2vpgD0r/ramo.png" alt="Ramo de flores" class="ramo">
+    </div>
+  </div>
+
+  <script>
+    function mostrarSorpresa() {
+      document.getElementById('sorpresa').style.display = 'block';
+
+      // Crear globos 🎈
+      for (let i = 0; i < 10; i++) {
+        let globo = document.createElement("div");
+        globo.className = "globo";
+        globo.style.left = Math.random() * 100 + "vw";
+        globo.style.background = `hsl(${Math.random()*360}, 80%, 60%)`;
+        globo.style.animationDuration = (8 + Math.random()*5) + "s";
+        document.body.appendChild(globo);
+      }
+
+      // Crear confeti 🎊
+      for (let i = 0; i < 50; i++) {
+        let confeti = document.createElement("div");
+        confeti.className = "confeti";
+        confeti.style.left = Math.random() * 100 + "vw";
+        confeti.style.background = `hsl(${Math.random()*360}, 80%, 60%)`;
+        confeti.style.animationDuration = (3 + Math.random()*3) + "s";
+        confeti.style.width = confeti.style.height = (5 + Math.random()*5) + "px";
+        document.body.appendChild(confeti);
+      }
+    }
+  </script>
+</body>
+</html>
